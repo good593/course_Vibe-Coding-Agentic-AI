@@ -9,23 +9,7 @@ style: |
 marp: true
 paginate: true
 ---
-
 # Codex와 ChatGPT Work 개요
-
-## 대화하는 AI에서 함께 일하는 AI로
-
-### 바이브 코딩 & Agentic AI 입문
-
----
-
-## 오늘의 학습 목표
-
-수업이 끝나면 다음을 설명할 수 있습니다.
-
-1. AI 에이전트가 일반 챗봇과 어떻게 다른지
-2. Codex와 ChatGPT Work가 각각 어떤 일을 잘하는지
-3. Chat·Work·Codex 중 무엇을 선택해야 하는지
-4. AI에게 일을 맡길 때 사람이 확인해야 하는 것은 무엇인지
 
 ---
 
@@ -109,7 +93,7 @@ AI 에이전트도 같습니다. 능력이 좋아도 **목표와 기준이 모�
 
 ---
 
-# 2. Codex 이해하기
+# [2. Codex 이해하기](https://learn.chatgpt.com/docs/codex/cli)
 
 ---
 
@@ -208,7 +192,7 @@ def add(a, b):
 
 ---
 
-# 3. ChatGPT Work 이해하기
+# [3. ChatGPT Work 이해하기](https://learn.chatgpt.com/docs/get-started-with-work)
 
 ---
 
