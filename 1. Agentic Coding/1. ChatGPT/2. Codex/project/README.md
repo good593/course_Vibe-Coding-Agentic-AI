@@ -1,7 +1,7 @@
 # 건강한하루: Codex 실습 시작 프로젝트
 
 Streamlit → FastAPI → 서비스 → 저장소 → SQLite로 상품을 조회하는 기본 예제입니다.
-Python 3.13과 uv를 사용합니다. 추천·RAG 상담·DB 변경은 학생이 Codex와 함께 구현합니다.
+Python 3.13과 uv를 사용합니다. 이번 과정에서는 학생이 Codex와 함께 RAG 상담 첫 버전을 추가합니다.
 
 ## 1. 폴더 열기
 
@@ -58,7 +58,8 @@ uv run --locked python -m streamlit run frontend/app.py --server.address 127.0.0
 ## 4. 검증
 
 ```powershell
-uv run --locked python -m pytest -q
+# Windows 사용자 Temp 권한 문제를 피하도록 테스트 임시 경로를 지정합니다.
+uv run --locked python -m pytest -q --basetemp=.pytest_cache/tmp
 uv run --locked ruff check .
 uv run --locked ruff format --check .
 ```
@@ -87,8 +88,8 @@ tests/                    # 기본 검증
 ```
 
 화면은 DB나 Groq를 직접 호출하지 않습니다. SQL은 저장소 계층과 DB 초기화 코드에 있습니다.
-DB 전환 실습에서는 연결·SQL·초기화 방식을 수정하고 기존 API 계약이 유지되는지 검사합니다.
-현재는 sqlite3 구현이며 PostgreSQL 지원이나 마이그레이션은 아직 없습니다.
+현재는 sqlite3 구현입니다. 이번 RAG 실습에서는 상품 DB와 기존 API 계약을 유지합니다.
+PostgreSQL 전환과 마이그레이션은 이번 범위에서 제외합니다.
 
 ## 6. Groq 연결 준비 — 상담 단원에서 진행
 
@@ -118,19 +119,28 @@ uv run --locked python -m scripts.check_llm --live
 - 상한섭취량 72개가 비어 있습니다. `NULL`로 보존하며 0으로 바꾸지 않습니다.
 - `350(보충제)` 같은 상한섭취량은 수치와 `upper_limit_raw` 원문을 함께 저장합니다. 경고 기능 구현 시 적용 조건과 단위까지 확인해야 합니다.
 - 제품별 영양소 함량이 없어 현재 자료만으로 여러 제품의 섭취량 합산을 구현할 수 없습니다.
-- 사용자 데이터 정의와 RAG 근거 문서 원문은 추가 준비가 필요합니다.
-- 두 정의서의 수용 여부, 구현 우선순위와 모호한 조건을 읽고 계획을 세우는 것이 첫 개발 과제입니다.
+- 실제 RAG 상담에 쓸 공식 근거 문서 원문은 추가 준비·검수가 필요합니다.
+- 두 정의서의 원래 요구사항은 유지합니다. 이번 범위는 새 RAG 시트와 [실습 보완 명세](<../docs/실습 보완 명세.md>)에서 확인합니다.
 
 ## 8. 수업 운영
 
 장별 프롬프트와 확인 절차는 [전체 강의 목차](../README.md)에서 확인합니다.
-7~8장에서 사용할 데이터 점검 도구는 `uv run --locked python -m scripts.data_quality_report`로 실행합니다.
-입력 CSV를 읽고 `docs/reports/data-quality.md`만 생성하며, 원본 자료의 정확성 검증이나 갱신을 수행하지 않습니다.
+0·1장은 기존 기본 사용법과 환경 준비 자료를 그대로 사용합니다.
+2장에서 `AGENTS.md`와 Codex 설정, 3장에서 find-skills·grill-me를 이용한 요구사항 인터뷰,
+4장에서 Plan 모드의 구현 계획, 5장에서 구현·검증·코드 리뷰·커밋·PR을 진행합니다.
 
-완성된 `AGENTS.md`, Codex 설정, 스킬과 예약 작업은 시작 코드에 넣지 않습니다.
-학생이 반복 작업과 변경 영향을 경험한 후 각 단원에서 작성합니다.
-강의는 프롬프트 → 계획 → AGENTS.md → 설정 → 검증·리뷰 → MCP → Skill → 예약 작업으로 구분합니다.
-최종 목표는 수용된 전체 요구사항, SQLite 스키마 변경, PostgreSQL 전환, Groq 기반 RAG 상담입니다.
+완성된 프로젝트 지침과 상담 코드는 시작 프로젝트에 넣지 않습니다.
+학생은 강의 저장소 밖의 독립 실습 폴더에 docs·data·project를 함께 복사합니다.
+Git 루트는 세 폴더를 포함하는 실습 폴더이며, project 안에서 다시 `git init`하지 않습니다.
+준비 절차는 [강사 진행 가이드](<../docs/강사 진행 가이드.md>)를 참고합니다.
+
+최종 목표는 기존 상품 조회를 유지하면서 근거 문서 검색·Groq 답변·검증된 인용·상담 화면을 추가하고,
+검증 및 리뷰 결과가 있는 PR을 만드는 것입니다. 모의 테스트와 실제 Groq 상담 확인은 구분합니다.
+추천·복용량 계산·상담 이력 저장·DB 전환은 이번 범위에 포함하지 않습니다.
+MCP·Skill 제작·예약 작업은 [Work 자료](<../../1. Work/README.md>)에서 다룹니다.
+
+기존 데이터 점검 도구 `uv run --locked python -m scripts.data_quality_report`는 선택적으로 사용할 수 있습니다.
+입력 CSV를 읽고 `docs/reports/data-quality.md`만 생성하며, 원본 자료의 정확성 검증이나 갱신을 수행하지 않습니다.
 
 ## 문제 해결
 
