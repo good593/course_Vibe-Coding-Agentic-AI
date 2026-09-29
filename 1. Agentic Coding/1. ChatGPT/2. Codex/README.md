@@ -11,7 +11,7 @@
 | 2 | [AGENTS.md와 Codex 설정 적용하기](<2. AGENTS.md와 Codex 설정 적용하기.md>) | 프로젝트 규칙·설정·적용 확인 |
 | 3 | [Skill로 RAG 요구사항 구체화하기](<3. Skill로 RAG 요구사항 구체화하기.md>) | find-skills·grill-me 활용, 요구사항 합의 |
 | 4 | [Plan 모드로 구현 방법 검토하기](<4. Plan 모드로 구현 방법 검토하기.md>) | 변경·검증·커밋·PR 계획 |
-| 5 | [계획에 따른 구현·검증·커밋·PR](<5. 계획에 따른 구현·검증·커밋·PR.md>) | 동작하는 RAG 첫 버전과 검토 가능한 PR |
+| 5 | [계획에 따른 구현·검증·커밋·PR](<5. 계획에 따른 구현·검증·커밋·PR.md>) | 프롬프트로 구현, Skill로 검증·커밋·PR 전달 |
 
 0·1번의 Markdown과 기존 PDF는 유지했습니다. 2~5번은 Marp Markdown 강의자료입니다. VS Code의 Marp 미리보기로 발표하며 필요하면 PDF로 내보낼 수 있습니다. 이전 2~10번과 기존 목차는 같은 폴더의 `tmp_` 파일로 보관했습니다.
 
@@ -21,7 +21,7 @@
 
 학생은 Python·VS Code·Git/GitHub·터미널을 사용할 수 있다고 가정합니다. 개발 도구는 VS Code Codex 확장, 서비스는 Python 3.13·uv·Streamlit·FastAPI·SQLite·Groq입니다. Skill 설치에는 Node.js·npm/npx, PR 명령에는 GitHub CLI를 사용합니다. GitHub 웹으로 PR을 생성하는 대안도 제공합니다.
 
-일반적인 MCP·Skill 제작·예약 작업은 [Work 강의](<../1. Work/README.md>)를 참조합니다. 이 과정에서는 기존 Skill을 요구사항 작업에 활용합니다. 프로필·복용량 계산·PostgreSQL 전환·전체 서비스 구현은 이번 필수 범위에서 제외합니다.
+일반적인 MCP·Skill 제작·예약 작업은 [Work 강의](<../1. Work/README.md>)를 참조합니다. 3장에서는 기존 Skill을 요구사항 작업에 활용하고, 5장에서는 제공하는 verify-changes·commit-changes·create-pr을 반복 절차에 사용합니다. 구현은 계획과 현재 상황에 맞는 일반 프롬프트로 요청합니다. 프로필·복용량 계산·PostgreSQL 전환·전체 서비스 구현은 이번 필수 범위에서 제외합니다.
 
 ## 작업 공간과 브랜치
 
@@ -31,6 +31,8 @@
 - 2~4장: chore/codex-setup에서 지침·Skill·요구사항·계획 준비
 - 5장 시작: 준비 상태·CI를 main에 반영한 후 feat/rag-chatbot 생성
 - 기능 변경: 작은 단위별 검증·리뷰·커밋, 하나의 RAG PR로 전달
+
+5장 시작의 준비 작업에는 `docs/skills/`의 제공 Skill 세 폴더를 `project/.agents/skills/`에 복사하고 준비 커밋에 포함하는 절차가 있습니다. 기존 외부 Skill 폴더를 덮어쓰지 않습니다.
 
 PowerShell 명령은 별도 안내가 없으면 `project`에서 실행합니다. Codex 프롬프트는 입력창에 붙입니다. 강의에 등장하는 새 기능 파일과 명령은 학생이 구현한 뒤 실행합니다. `.env`, DB, 가상환경·캐시를 커밋하지 않습니다.
 
@@ -46,5 +48,7 @@ uv run --locked ruff format --check .
 ```
 
 최종 제출은 합의한 요구사항·계획, 기능 커밋, 검증·리뷰 기록, PR URL, CI 결과와 리뷰 반영 근거입니다. 모의 테스트, 실제 Groq 호출, 공식 원문 대조를 구분합니다. 자료·계정·네트워크 때문에 실행하지 못한 항목은 이유와 다음 확인을 적습니다.
+
+검증 기록은 검사 대상 파일 목록·SHA256을 남기고, 커밋·PR 단계에서 현재 상태와 비교합니다. 소스·테스트·설정·입력 자료 변경은 필요한 재검증으로 연결합니다. 전체 검증 기록은 `project/docs/reports/rag-validation.md`, 별도 코드 리뷰 기록은 `project/docs/reports/rag-review.md`에 둡니다.
 
 현재 배포물은 상품 조회 시작 코드와 학생 구현을 위한 강의입니다. 실제 RAG 완성 코드·학생 PR·CI·외부 Skill 설치를 이미 실행했다고 표시하지 않습니다. 공식·원본 안내 확인일: 2026-09-29.

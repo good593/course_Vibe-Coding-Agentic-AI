@@ -33,6 +33,16 @@
 - 테스트·Ruff·수동 확인 명령: [실제 명령]
 - CI 작업 위치: [Git 루트와 project 상대경로]
 
+## 검증·커밋·PR Skill에 전달할 정보
+
+- 단위별 검증 기록 경로: [예: docs/reports/search-validation.md, api-validation.md, ui-validation.md]
+- 전체 검증·리뷰 기록 경로: [예: docs/reports/rag-validation.md, rag-review.md]
+- 검사 대상 범위: [관련 소스·테스트·설정·lock·요구사항·계획·입력 자료·CI, 파일 목록·SHA256으로 상태 확인]
+- 필수 검증과 허용할 미실행: [실제 자료·계정 부족 시 이유와 재실행 조건]
+- 커밋 범위와 PR 대상: [학생 저장소·remote·base/head·본문 경로]
+
+5장에서 구현은 일반 프롬프트로 요청하고 verify-changes → 검토 → commit-changes를 단위별로 반복합니다. 전체 검증과 코드 리뷰 후 create-pr로 본문 준비·게시를 진행합니다.
+
 ## 실패·복구와 인계
 
 - 실패 시 동작·복구: [계획]
