@@ -9,7 +9,7 @@ description: 검증한 구현 단위의 변경을 선별하고 staged diff를 �
 
 ## 입력
 
-구현 단위, 계획, 검증 기록, 선택한 파일·메시지, 준비만 할지 실제 커밋할지를 현재 요청에서 확인한다. 이 실습에서는 `project/docs/plans/rag-chatbot.md`와 `project/docs/reports/`의 기록을 사용한다. 경로는 실제 Git 루트와 현재 폴더에서 해석한다.
+구현 단위, 계획, 검증 기록, 선택한 파일·메시지, 준비만 할지 실제 커밋할지를 현재 요청에서 확인한다. 이 프로젝트에서는 `project/docs/plans/rag-chatbot.md`와 `project/docs/reports/`의 기록을 사용한다. 경로는 실제 Git 루트와 현재 폴더에서 해석한다.
 
 ## 절차
 

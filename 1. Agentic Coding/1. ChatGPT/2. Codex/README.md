@@ -17,7 +17,7 @@
 
 ## 준비 자료와 진행 기준
 
-[docs 안내](docs/README.md)와 [강사 진행 가이드](<docs/강사 진행 가이드.md>)부터 확인합니다. Excel의 기존 원문은 유지하고 이번 범위를 표시하는 시트를 추가했습니다. 원문 전체 서비스의 수용 O를 이번 과정의 필수 구현으로 해석하지 않습니다.
+[docs 안내](docs/README.md)와 [강사 진행 가이드](<강사 진행 가이드.md>)부터 확인합니다. Excel의 기존 원문은 유지하고 이번 범위를 표시하는 시트를 추가했습니다. 원문 전체 서비스의 수용 O를 이번 과정의 필수 구현으로 해석하지 않습니다.
 
 학생은 Python·VS Code·Git/GitHub·터미널을 사용할 수 있다고 가정합니다. 개발 도구는 VS Code Codex 확장, 서비스는 Python 3.13·uv·Streamlit·FastAPI·SQLite·Groq입니다. Skill 설치에는 Node.js·npm/npx, PR 명령에는 GitHub CLI를 사용합니다. GitHub 웹으로 PR을 생성하는 대안도 제공합니다.
 
